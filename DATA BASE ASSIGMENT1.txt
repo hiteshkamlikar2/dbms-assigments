@@ -1,0 +1,65 @@
+ASSIGMENT_1
+postgres=# create database assigment1;
+CREATE DATABASE
+postgres=# \c assigment1;
+You are now connected to database "assigment1" as user "postgres".
+assigment1=# create a table countries ("countries_id" integer, "country_name" text, "region_id" integer);
+ERROR:  syntax error at or near "a"
+LINE 1: create a table countries ("countries_id" integer, "country_n...
+               ^
+1.assigment1=# create table countries ("countries_id" integer, "country_name" text, "region_id" integer);
+CREATE TABLE
+assigment1=# \d
+           List of relations
+ Schema |   Name    | Type  |  Owner
+--------+-----------+-------+----------
+ public | countries | table | postgres
+(1 row)
+
+
+assigment1=# \d countries
+                Table "public.countries"
+    Column    |  Type   | Collation | Nullable | Default
+--------------+---------+-----------+----------+---------
+ countries_id | integer |           |          |
+ country_name | text    |           |          |
+ region_id    | integer |
+
+                            ^
+2.assigment1=# create table if not exist countries ("country_id" integer, "country_name" text, "region_id" integer);
+ERROR:  syntax error at or near "exist"
+LINE 1: create table if not exist countries ("country_id" integer, "...
+                            ^
+assigment1=# \d
+           List of relations
+ Schema |   Name    | Type  |  Owner
+--------+-----------+-------+----------
+ public | countries | table | postgres
+(1 row)
+
+
+3.assigment1=# create table if not exists dup_countries
+assigment1-# like countries;
+ERROR:  syntax error at or near "like"
+LINE 2: like countries;
+        ^
+assigment1=# "like" countries;
+ERROR:  syntax error at or near ""like""
+LINE 1: "like" countries;
+        ^
+assigment1=# \d
+           List of relations
+ Schema |   Name    | Type  |  Owner
+--------+-----------+-------+----------
+ public | countries | table | postgres
+(1 row)
+
+
+3.assigment1=# \d countries
+                Table "public.countries"
+    Column    |  Type   | Collation | Nullable | Default
+--------------+---------+-----------+----------+---------
+ countries_id | integer |           |          |
+ country_name | text    |           |          |
+ region_id    | integer
+
